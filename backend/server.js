@@ -1,7 +1,6 @@
 // 必要なモジュールをインポート
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./config/db');
 const indexRouter = require('./routes/index');
 
 const app = express(); // Expressアプリケーションのインスタンスを作成
