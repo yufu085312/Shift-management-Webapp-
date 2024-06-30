@@ -1,7 +1,7 @@
 // 必要なモジュールをインポート
 const express = require('express');
 const router = express.Router(); // Expressのルーターを作成
-const db = require('../config/db');
+const db = require('../config/db'); // データベース接続の設定ファイルをインポート
 
 // ルートハンドラー
 router.get('/', (req, res) => {
@@ -13,9 +13,11 @@ router.get('/shifts', (req, res) => {
     const sql = 'SELECT * FROM shifts'; // ここでテーブル名を適切に変更してください
     db.query(sql, (err, results) => {
         if (err) {
+            console.error('Error occurred: ' + err.message);
             return res.status(500).send('Error occurred: ' + err.message);
         }
-        res.json(results);
+        console.log(results); // 取得したデータをコンソールに出力
+        res.json(results); // 取得したデータをJSON形式でレスポンス
     });
 });
 
