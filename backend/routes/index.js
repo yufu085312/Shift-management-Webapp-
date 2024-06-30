@@ -21,16 +21,20 @@ router.get('/shifts', (req, res) => {
     });
 });
 
-// APIの動作確認用エンドポイント
-/*
-router.get('/api', (req, res) => {
-    res.json({ message: 'API is working!' }); // 'API is working!' メッセージをJSON形式で返す
+// ログイン用のエンドポイント
+router.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    const sql = 'SELECT * FROM users WHERE email = ? AND password = ?'; // ここでテーブル名とカラム名を適切に変更してください
+    db.query(sql, [email, password], (err, results) => {
+        if (err) {
+            return res.status(500).send('Error occurred: ' + err.message);
+        }
+        if (results.length > 0) {
+            res.json({ success: true });
+        } else {
+            res.json({ success: false });
+        }
+    });
 });
-*/
-
-// ユーザー情報を取得するエンドポイント
-/*
-router.get('/api/users', userController.getUsers); // GETリクエストで'/api/users'にアクセスした際にuserControllerのgetUsers関数を呼び出す
-*/
 
 module.exports = router; // このルーターをモジュールとしてエクスポート

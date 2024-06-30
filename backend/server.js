@@ -1,10 +1,14 @@
 // 必要なモジュールをインポート
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // corsモジュールをインポート
 const indexRouter = require('./routes/index');
 
 const app = express(); // Expressアプリケーションのインスタンスを作成
 const port = 3000; // サーバーがリッスンするポート番号を設定
+
+// CORSを有効にする
+app.use(cors());
 
 // ボディパーサーをミドルウェアとして使用し、JSONデータおよびURLエンコードデータの解析を可能にする
 app.use(bodyParser.json());
