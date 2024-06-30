@@ -1,19 +1,20 @@
-// src/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:3000/login', { email, password });
             if (response.data.success) {
-                // ログイン成功時の処理
-                console.log('Login successful');
+                // ログイン成功時にカレンダー画面に遷移
+                navigate('/calendar');
             } else {
                 setError('Invalid email or password');
             }
