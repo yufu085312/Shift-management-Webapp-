@@ -23,9 +23,9 @@ router.get('/shifts', (req, res) => {
 
 // ログイン用のエンドポイント
 router.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    const sql = 'SELECT * FROM users WHERE email = ? AND password = ?'; // ここでテーブル名とカラム名を適切に変更してください
-    db.query(sql, [email, password], (err, results) => {
+    const { name, password } = req.body;
+    const sql = 'SELECT * FROM users WHERE name = ? AND password = ?'; // ここでテーブル名とカラム名を適切に変更してください
+    db.query(sql, [name, password], (err, results) => {
         if (err) {
             return res.status(500).send('Error occurred: ' + err.message);
         }

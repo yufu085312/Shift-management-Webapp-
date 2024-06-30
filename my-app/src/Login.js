@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', { email, password });
+            const response = await axios.post('http://localhost:3000/login', { name, password });
             if (response.data.success) {
                 // ログイン成功時にカレンダー画面に遷移
                 navigate('/calendar');
@@ -29,11 +29,11 @@ const Login = () => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Email:</label>
+                    <label>名前:</label>
                     <input 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
+                        type="name" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)} 
                         required 
                     />
                 </div>
