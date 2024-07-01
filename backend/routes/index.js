@@ -53,4 +53,33 @@ router.post('/login', (req, res) => {
     });
 });
 
+// 管理者ログイン用のエンドポイント
+router.post('/admin-login', (req, res) => {
+    const { adminName, adminPassword } = req.body;
+    const sql = 'SELECT * FROM admins WHERE name = ? AND password = ?';
+    db.query(sql, [adminName, adminPassword], (err, results) => {
+        if (err) {
+            return res.status(500).send('Error occurred: ' + err.message);
+        }
+        if (results.length > 0) {
+            res.json({ success: true });
+        } else {
+            res.json({ success: false });
+        }
+    });
+});
+
+// シフト保存用のエンドポイント
+router.post('/shifts', (req, res) => {
+    const { employeeName, date, startTime, endTime } = req.body;
+    const sql = 'INSERT INTO shifts (employee_name, shift_date, start_time, end_time) VALUES (?, ?, ?, ?)';
+    db.query(sql, [employeeName, date, startTime, endTime], (err, results) => {
+        if (err) {
+            console.error('Error occurred: ' + err.message);
+            return res.status(500).send('Error occurred: ' + err.message);
+        }
+        res.json({ success: true });
+    });
+});
+
 module.exports = router; // このルーターをモジュールとしてエクスポート
