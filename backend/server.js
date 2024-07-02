@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // corsモジュールをインポート
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index'); // ルーティングモジュールをインポート
 
 const app = express(); // Expressアプリケーションのインスタンスを作成
 const port = 3000; // サーバーがリッスンするポート番号を設定

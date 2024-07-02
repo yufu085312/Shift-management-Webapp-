@@ -21,6 +21,22 @@ router.get('/shifts', (req, res) => {
     });
 });
 
+// 店舗登録用のエンドポイント
+router.post('/store-register', (req, res) => {
+    console.log('Received request for /store-register');
+    const { storeName, storePassword } = req.body;
+    console.log('Store name:', storeName);
+    console.log('Store password:', storePassword);
+    const sql = 'INSERT INTO stores (name, password) VALUES (?, ?)';
+    db.query(sql, [storeName, storePassword], (err, results) => {
+        if (err) {
+            console.error('Error occurred: ' + err.message);
+            return res.status(500).send('Error occurred: ' + err.message);
+        }
+        res.json({ success: true });
+    });
+});
+
 // 店舗ログイン用のエンドポイント
 router.post('/store-login', (req, res) => {
     const { storeName, storePassword } = req.body;

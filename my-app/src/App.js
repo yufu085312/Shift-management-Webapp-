@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { UserProvider } from './UserContext';
 import StoreLogin from './StoreLogin';
+import StoreRegister from './StoreRegister';
 import Login from './Login';
 import Shiftinput from './Shift';
 import Admininput from './Admin';
@@ -13,6 +14,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/store-login" element={<StoreLogin />} />
+          <Route path="/store-register" element={<StoreRegister />} />
           <Route path="/login" element={<Login />} />
           <Route path="/shift" element={<Shiftinput />} />
           <Route path="/admin" element={<Admininput />} />
